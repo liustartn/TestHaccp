@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <title>幻燈片＋Tab切換文字區塊</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="幻燈片_style.css">
+</head>
+<body>
+
+  <div class="container">
+    <div class="top">
+      <div class="brand" style="font-size:45px; color:rgb(64, 92, 252);">▷影音資訊</div>
+    </div>
+
+
+    <div class="slideshow-wrapper">
+      
+      <!-- 左邊幻燈片 -->
+      <div class="slideshow-left" id="slider">
+        <div class="slide fade">
+          <a href="https://www.youtube.com/watch?v=2X6ceP8p9jw" target="_blank" rel="noopener"
+             style="background-image:url('W2.jpg');"></a>
+        </div>
+        <div class="slide fade">
+          <a href="CEDAW暨性別平等宣導影片.mp4" target="_blank" rel="noopener"
+             style="background-image:url('W2.jpg');"></a>
+        </div>
+        <div class="slide fade">
+          <a href="https://www.youtube.com/watch?v=8icLIp6NECU" target="_blank" rel="noopener"
+             style="background-image:url('W2.jpg');"></a>
+        </div>
+
+        <button class="prev" aria-label="上一張">❮</button>
+        <button class="next" aria-label="下一張">❯</button>
+
+        <div class="dots" aria-label="輪播頁籤">
+          <span class="dot" aria-label="第1張"></span>
+          <span class="dot" aria-label="第2張"></span>
+          <span class="dot" aria-label="第3張"></span>
+        </div>
+      </div>
+
+      <!-- 右邊：分類文字區塊（只滾動內容） -->
+      <div class="slideshow-right">
+        <!-- 如果暫時沒有分頁按鈕，可把 .tabs 省略；我留空不影響版型 -->
+        <div class="tabs"></div>
+
+        <div class="right-scroll">
+          <div class="tab-content active">
+            <ul class="link-list timeline">
+              <li><a class="link-row" href="introduction1.1.htm" target="_blank"><span class="title">🏛️關於學會</span></a></li>
+              <li><a class="link-row" href="education.htm" target="_blank"><span class="title">📚教育訓練</span></a></li>
+              <li><a class="link-row" href="counseling.htm" target="_blank"><span class="title">🛠️技術導覽</span></a></li>
+              <li><a class="link-row" href="membership4.4.html" target="_blank"><span class="title">📄入會辦法</span></a></li>
+              <li><a class="link-row" href="download.htm" target="_blank"><span class="title">📥表單下載</span></a></li>
+            </ul>
+          </div>
+        </div><!-- /right-scroll -->
+      </div><!-- /slideshow-right -->
+    </div><!-- /slideshow-wrapper -->
+
+  <script>
+    // ====== 幻燈片 ======
+    (function () {
+      let slideIndex = 0;
+      let slides, dots, timer;
+
+      function query(){ slides = document.querySelectorAll(".slide"); dots = document.querySelectorAll(".dot"); }
+      function show(){
+        slides.forEach(s => s.style.display = "none");
+        dots.forEach(d => d.classList.remove("active"));
+        if (slideIndex >= slides.length) slideIndex = 0;
+        if (slideIndex < 0) slideIndex = slides.length - 1;
+        slides[slideIndex].style.display = "block";
+        dots[slideIndex].classList.add("active");
+      }
+      function start(){ stop(); timer = setInterval(()=>{ slideIndex++; show(); }, 5000); }
+      function stop(){ if (timer) clearInterval(timer); }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        query(); show(); start();
+        document.querySelector(".prev").addEventListener("click", ()=>{ slideIndex--; show(); start(); });
+        document.querySelector(".next").addEventListener("click", ()=>{ slideIndex++; show(); start(); });
+        dots.forEach((dot, i) => dot.addEventListener("click", ()=>{ slideIndex = i; show(); start(); }));
+        const slider = document.getElementById("slider");
+        slider.addEventListener("mouseenter", stop);
+        slider.addEventListener("mouseleave", start);
+      });
+    })();
+
+    // ====== Tabs（現在沒按鈕也不影響） ======
+    (function(){
+      document.addEventListener("DOMContentLoaded", () => {
+        const buttons = document.querySelectorAll(".tab-button");
+        const contents = document.querySelectorAll(".tab-content");
+        buttons.forEach((btn, i) => {
+          btn.addEventListener("click", () => {
+            buttons.forEach(b=>b.classList.remove("active"));
+            contents.forEach(c=>c.classList.remove("active"));
+            btn.classList.add("active");
+            contents[i].classList.add("active");
+            const scroller = document.querySelector(".right-scroll");
+            if (scroller) scroller.scrollTop = 0;
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

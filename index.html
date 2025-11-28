@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="大溪地政.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index_style.css">
+  <title>大溪地政</title>
+</head>
+
+<body>
+
+  <!-- 標題區 -->
+  <div id="header-container"></div>
+
+  <!-- 幻燈片區 -->
+  <div id="slideshow-container"></div>
+
+  <div id="書寫範例教學-container"></div>
+
+  <section class="link-cards" aria-label="社群與常用連結">
+
+    <!-- 下拉（點擊展開） -->
+    <div class="menu-wrap">
+      <button class="menu-btn" id="govToggle" aria-expanded="false" aria-controls="govMenu">
+        地政專區
+      </button>
+
+      <!-- 彈出面板：寬度與下面卡片一樣（佔滿容器寬） -->
+      <div class="menu-popover" id="govMenu" role="menu">
+        <a class="menu-item" href="https://lvr.land.moi.gov.tw/" target="_blank">
+          <div class="item-title">內政部不動產交易實價查詢服務網</div>
+          <div class="item-sub">https://lvr.land.moi.gov.tw/</div>
+        </a>
+        <a class="menu-item" href="https://www.land.tycg.gov.tw/chaspx/DefaultS.aspx" target="_blank">
+          <div class="item-title">桃園地政資訊服務網</div>
+          <div class="item-sub">https://www.land.tycg.gov.tw/chaspx/DefaultS.aspx</div>
+        </a>
+        <a class="menu-item" href="https://e-services.tycg.gov.tw/TycgOnline/tycgOnline.action" target="_blank">
+          <div class="item-title">桃園網路e指通</div>
+          <div class="item-sub">https://e-services.tycg.gov.tw/TycgOnline/tycgOnline.action</div>
+        </a>
+        <a class="menu-item" href="https://www.tycg.gov.tw/" target="_blank">
+          <div class="item-title">桃園市政府</div>
+          <div class="item-sub">https://www.tycg.gov.tw/</div>
+        </a>
+        <a class="menu-item" href="https://taobao.tycg.gov.tw/Home" target="_blank">
+          <div class="item-title">桃園住宅及不動產資訊桃寶網</div>
+          <div class="item-sub">https://taobao.tycg.gov.tw/Home</div>
+        </a>
+      </div>
+    </div>
+
+
+
+    <a class="card" href="https://www.facebook.com/daxiland.tycg.gov.tw/" target="_blank" rel="noopener">
+      <img class="card-icon"
+        src="https://static.newmobilelife.com/wp-content/uploads/2016/04/facebook-logo-png-transparent-background.png"
+        alt="Facebook 粉絲團">
+      <div>
+        <h3 class="card-title">大溪地所粉絲團 </h3>
+        <div class="card-url">https://www.facebook.com/daxiland.tycg.gov.tw/</div>
+      </div>
+    </a>
+
+
+
+    <a class="card" href="https://line.me/R/ti/p/@taoyuancgo?from=page&openQrModal=true&searchId=taoyuancgo"
+      target="_blank" rel="noopener">
+      <img class="card-icon"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/LINE_logo.svg/1200px-LINE_logo.svg.png"
+        alt="市府 LINE">
+      <div>
+        <h3 class="card-title">桃園市政府官方line </h3>
+        <div class="card-url">https://line.me/R/ti/p/@taoyuancgo?from=page&openQrModal=true&searchId=taoyuancgo</div>
+      </div>
+    </a>
+  </section>
+
+
+  <script>
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch("header.html")
+        .then(response => response.text())
+        .then(data => document.getElementById("header-container").innerHTML = data)
+        .catch(error => console.error("載入 header 失敗:", error));
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch("書寫範例教學.html")
+        .then(response => response.text())
+        .then(data => document.getElementById("書寫範例教學-container").innerHTML = data)
+        .catch(error => console.error("載入 header 失敗:", error));
+    });
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch("幻燈片和右方文字區塊.html")
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById("slideshow-container").innerHTML = html;
+          state.slideLoaded = true;
+          trySetupSearch();
+
+          // 啟用幻燈片輪播
+          let slideIndex = 0;
+          let slides = document.querySelectorAll(".slide");
+          let dots = document.querySelectorAll(".dot");
+          let slideInterval;
+
+          function showSlides() {
+            slides.forEach(s => s.style.display = "none");
+            dots.forEach(d => d.classList.remove("active"));
+            if (slideIndex >= slides.length) slideIndex = 0;
+            if (slideIndex < 0) slideIndex = slides.length - 1;
+            slides[slideIndex].style.display = "block";
+            dots[slideIndex].classList.add("active");
+          }
+
+          function plusSlides(n) {
+            clearInterval(slideInterval);
+            slideIndex += n;
+            showSlides();
+            startSlideShow();
+          }
+
+          function currentSlide(n) {
+            clearInterval(slideInterval);
+            slideIndex = n;
+            showSlides();
+            startSlideShow();
+          }
+
+          function startSlideShow() {
+            slideInterval = setInterval(() => {
+              slideIndex++;
+              showSlides();
+            }, 5000);
+          }
+
+          // 初始化幻燈片
+          showSlides();
+          startSlideShow();
+
+          // 綁定按鈕事件
+          document.querySelector(".prev").onclick = () => plusSlides(-1);
+          document.querySelector(".next").onclick = () => plusSlides(1);
+          dots.forEach((dot, i) => {
+            dot.onclick = () => currentSlide(i);
+          });
+
+          // Tab 切換事件委派
+          const tabButtons = document.querySelectorAll(".tab-button");
+          const tabContents = document.querySelectorAll(".tab-content");
+
+          tabButtons.forEach((btn, i) => {
+            btn.addEventListener("click", () => {
+              tabButtons.forEach(b => b.classList.remove("active"));
+              tabContents.forEach(c => c.classList.remove("active"));
+              btn.classList.add("active");
+              tabContents[i].classList.add("active");
+            });
+          });
+        })
+        .catch(err => {
+          console.error("載入幻燈片失敗：", err);
+        });
+    });
+  </script>
+
+  <script>
+    (function () {
+      const KEY = 'siteFontSize';
+      const html = document.documentElement;
+
+      // 1) 套用 & 記住
+      function apply(size) {
+        html.classList.remove('fs-sm', 'fs-md', 'fs-lg');
+        html.classList.add('fs-' + size);
+        localStorage.setItem(KEY, size);
+        syncActive();
+      }
+
+      // 2) 同步 header 按鈕的 active 狀態（header 可能晚一點才載入）
+      function syncActive() {
+        const switcher = document.getElementById('fontSwitch');
+        if (!switcher) return;
+        const current = localStorage.getItem(KEY) || 'md';
+        switcher.querySelectorAll('button').forEach(b => {
+          b.classList.toggle('active', b.dataset.size === current);
+        });
+      }
+
+      // 3) 事件委派：不管 header 何時插入，點擊都會被接住
+      document.addEventListener('click', (e) => {
+        const btn = e.target.closest('#fontSwitch button[data-size]');
+        if (!btn) return;
+        apply(btn.dataset.size);
+      });
+
+      // 4) 初始化：一載入就套上上次選擇
+      apply(localStorage.getItem(KEY) || 'md');
+
+      // 5) 監聽 DOM 變化，等 fetch 把 header 插入後同步 active 狀態
+      const mo = new MutationObserver(syncActive);
+      mo.observe(document.body, { childList: true, subtree: true });
+    })();
+  </script>
+
+  <script>
+    // ✅ 等 header、教學、幻燈片都載好，才綁「像 Ctrl+F」的找字＋跳轉
+    const state = { headerLoaded: false, teachLoaded: false, slideLoaded: false };
+
+    // 這兩段保留原本載入 header / 教學，只是最後改呼叫 trySetupSearch()
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("header.html")
+        .then(r => r.text())
+        .then(html => {
+          document.getElementById("header-container").innerHTML = html;
+          state.headerLoaded = true;
+          trySetupSearch();
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("書寫範例教學.html")
+        .then(r => r.text())
+        .then(html => {
+          document.getElementById("書寫範例教學-container").innerHTML = html;
+          state.teachLoaded = true;
+          trySetupSearch();
+        });
+    });
+
+    // ⚠️ 第 1 步已在載入「幻燈片」那段 fetch 塞了：
+    // state.slideLoaded = true; trySetupSearch();
+
+    function trySetupSearch() {
+      // 等三塊都到位
+      if (!state.headerLoaded || !state.teachLoaded || !state.slideLoaded) return;
+
+      const input = document.getElementById('q'); // header.html 裡的搜尋框
+      const scopeTeach = document.getElementById('書寫範例教學-container');
+      const scopeSlide = document.getElementById('slideshow-container');
+      if (!input) return;
+
+      // ① 教學卡片標題 h4（外層 .card）
+      const nodesTeach = scopeTeach ? Array.from(scopeTeach.querySelectorAll('.card h4')) : [];
+      // ② 幻燈片右欄清單項目文字（.slideshow-right 裡的 .title；外層 .link-row，捲動容器 .right-scroll）
+      const nodesSlide = scopeSlide ? Array.from(scopeSlide.querySelectorAll('.slideshow-right .title')) : [];
+
+      const nodes = [...nodesTeach, ...nodesSlide];
+
+      let matches = [];
+      let idx = -1;
+
+      const escapeRegExp = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+      function clearHighlights() {
+        // 清掉所有 <mark class="hl">
+        document.querySelectorAll('mark.hl').forEach(m => {
+          const text = document.createTextNode(m.textContent);
+          const parent = m.parentNode;
+          parent.replaceChild(text, m);
+          parent.normalize();
+        });
+        // 移除跳轉閃爍
+        document.querySelectorAll('.card.jumpFlash, .link-row.jumpFlash')
+          .forEach(el => el.classList.remove('jumpFlash'));
+      }
+
+      function highlightAndCollect(keyword) {
+        matches = [];
+        if (!keyword) return;
+        const re = new RegExp(`(${escapeRegExp(keyword)})`, 'ig');
+
+        nodes.forEach(node => {
+          const raw = node.textContent;
+          if (!raw.toLowerCase().includes(keyword.toLowerCase())) return;
+          node.innerHTML = raw.replace(re, '<mark class="hl">$1</mark>');
+          // 依容器不同抓外層，用來跳轉
+          const carrier = node.closest('.card, .link-row') || node;
+          matches.push(carrier);
+        });
+      }
+
+      function jump(to) {
+        if (!matches.length) return;
+        idx = (to + matches.length) % matches.length;
+        const target = matches[idx];
+        target.classList.add('jumpFlash');
+
+        // 若在右欄，改用右欄自己的捲動容器
+        const scroller = target.closest('.right-scroll');
+        if (scroller) {
+          const top = target.offsetTop - 16; // 稍微往上留點空間
+          scroller.scrollTo({ top, behavior: 'smooth' });
+        } else {
+          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        setTimeout(() => target.classList.remove('jumpFlash'), 900);
+      }
+
+      // 輸入即時標亮＋自動跳第一個
+      input.addEventListener('input', () => {
+        const kw = input.value.trim();
+        clearHighlights();
+        if (!kw) { matches = []; idx = -1; return; }
+        highlightAndCollect(kw);
+        if (matches.length) jump(0);
+      });
+
+      // Enter 下一個；Shift+Enter 上一個（焦點在輸入框時）
+      document.addEventListener('keydown', (e) => {
+        if (document.activeElement !== input || !matches.length) return;
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          e.shiftKey ? jump(idx - 1) : jump(idx + 1);
+        }
+      });
+    }
+  </script>
+
+
+  <script>
+    // 點擊展開 / 點外面關閉 / ESC 關閉（含無障礙 aria）
+    (function () {
+      const btn = document.getElementById('govToggle');
+      const menu = document.getElementById('govMenu');
+
+      function openMenu() { menu.style.display = 'block'; btn.setAttribute('aria-expanded', 'true'); }
+      function closeMenu() { menu.style.display = 'none'; btn.setAttribute('aria-expanded', 'false'); }
+
+      btn.addEventListener('click', (e) => {
+        const open = btn.getAttribute('aria-expanded') === 'true';
+        open ? closeMenu() : openMenu();
+        e.stopPropagation();
+      });
+
+      // 點外面關閉
+      document.addEventListener('click', (e) => {
+        if (!menu.contains(e.target) && e.target !== btn) closeMenu();
+      });
+
+      // ESC 關閉
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
+      });
+    })();
+
+  </script>
+
+
+</body>
+
+
+</html>

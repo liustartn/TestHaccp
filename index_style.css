@@ -1,0 +1,577 @@
+    * body {
+        font-family: "Microsoft JhengHei", sans-serif;
+        margin: 0;
+        background-color: #f5f5f5;
+        color: #333;
+    }
+
+
+    /* logo 置左，放大 */
+    .logo-container {
+        display: flex;
+        align-items: center;
+        padding: 16px 32px;
+        background-color: white;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .logo-container img {
+        height: 80px;
+        max-width: 100%;
+    }
+
+    /* header 預留位置（放 header.html） */
+    .header {
+        background-color: white;
+        box-shadow: none;
+    }
+
+    /* 下方導覽列 */
+    .nav-bar {
+        background-color: #ffcc66;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 12px 0;
+        box-shadow: inset 0 -1px #d2a743;
+    }
+
+    .nav-bar a {
+        margin: 0 16px;
+        text-decoration: none;
+        color: #222;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .nav-bar a:hover {
+        color: #c00;
+    }
+
+    .main-content {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 24px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    h2 {
+        color: #2c3e50;
+        margin-bottom: 16px;
+    }
+
+    p {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .footer {
+        text-align: center;
+        padding: 16px;
+        font-size: 14px;
+        color: #888;
+    }
+
+    /* 幻燈片容器 */
+    .slideshow-container {
+        position: relative;
+        max-width: 100%;
+        height: 500px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f5f5f5;
+    }
+
+    /* 單張幻燈片 */
+    .slide {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* 幻燈片圖片 */
+
+    /* 淡入動畫 */
+    .fade {
+        animation: fadeEffect 1.5s;
+    }
+
+    @keyframes fadeEffect {
+        from {
+            opacity: 0.4;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* 左右箭頭按鈕 */
+    .prev,
+    .next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 30px;
+        padding: 10px;
+        color: white;
+        background: rgba(0, 0, 0, 0.5);
+        border: none;
+        cursor: pointer;
+        z-index: 10;
+        border-radius: 4px;
+        transition: background 0.3s;
+    }
+
+    .prev {
+        left: 10px;
+    }
+
+    .next {
+        right: 10px;
+    }
+
+    .prev:hover,
+    .next:hover {
+        background: rgba(0, 0, 0, 0.8);
+    }
+
+    /* 響應式設計（手機高度調整） */
+    @media (max-width: 768px) {
+        .slideshow-container {
+            height: 300px;
+        }
+
+        .slide img {
+            max-width: 100%;
+        }
+    }
+
+    :root {
+        --paper: #f3f3f3;
+        --paper-alt: #e9e9e9;
+        --ink: #1f2937;
+        --muted: #475569;
+        --pill: #d8c18a;
+        /* 日期膠囊底色 */
+    }
+
+    .link-cards {
+        width: min(1100px, 95vw);
+        margin: 28px auto;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .card {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        gap: 20px;
+        align-items: center;
+        padding: 16px;
+        text-decoration: none;
+        color: var(--ink);
+        background: var(--paper);
+        border-radius: 6px;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, .04) inset;
+        transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+    }
+
+    .card:nth-child(even) {
+        background: var(--paper-alt);
+    }
+
+    .card:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
+    }
+
+    .card:focus-visible {
+        outline: 2px solid #3b82f6;
+        outline-offset: 2px;
+    }
+
+    .card-icon {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 4px;
+        background: #fff;
+        border: 1px solid #e5e7eb;
+    }
+
+    .card-title {
+        font-size: 22px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0 0 8px 0;
+    }
+
+    .date-pill {
+        background: var(--pill);
+        color: #333;
+        border-radius: 999px;
+        font-size: 14px;
+        padding: 6px 12px;
+        line-height: 1;
+        white-space: nowrap;
+    }
+
+    .card-url {
+        color: #333;
+        font-size: 16px;
+        word-break: break-all;
+        margin-top: 2px;
+    }
+
+    @media (max-width: 640px) {
+        .card {
+            grid-template-columns: 72px 1fr;
+            padding: 12px;
+        }
+
+        .card-icon {
+            width: 72px;
+            height: 72px;
+        }
+
+        .card-title {
+            font-size: 18px;
+        }
+
+        .date-pill {
+            font-size: 12px;
+            padding: 4px 10px;
+        }
+
+        .card-url {
+            font-size: 14px;
+        }
+    }
+
+    /* Ctrl+F 風格的標亮 */
+    mark.hl {
+        background: #76ffff;
+        padding: 0 2px;
+        border-radius: 2px;
+    }
+
+    /* 跳到目標時做一下閃爍提示 */
+    .card.jumpFlash {
+        animation: jumpFlash .8s ease-out;
+    }
+
+    @keyframes jumpFlash {
+        0% {
+            box-shadow: 0 0 0 6px rgba(14, 165, 233, .35);
+        }
+
+        100% {
+            box-shadow: 0 0 0 0 rgba(14, 165, 233, 0);
+        }
+    }
+
+    /* === 搜尋框置中 + 固定最大寬 === */
+    :root {
+        /* 想多長就改這個，例如 960 / 1040 / 1200 */
+        --search-width: 1040px;
+    }
+
+    /* 讓整個搜尋列本身有寬度，並置中 */
+    .searchbar {
+        width: min(100%, var(--search-width)) !important;
+        /* ✅ 關鍵：給實際寬度 */
+        margin: 12px auto 20px !important;
+        /* 置中 */
+        position: relative !important;
+        display: block !important;
+    }
+
+    /* 輸入框吃滿容器 */
+    .searchbar input {
+        width: 100% !important;
+        height: 48px !important;
+        font-size: 16px !important;
+        padding: 12px 14px 12px 42px !important;
+        /* 左邊留空給放大鏡 */
+        border-radius: 12px !important;
+    }
+
+    /* 放大鏡固定在輸入框左內側 */
+    .searchbar svg {
+        position: absolute !important;
+        left: 12px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        opacity: .6 !important;
+        pointer-events: none;
+    }
+
+    /* 1) 定義字級切換（作用在整站） */
+    html.fs-sm {
+        font-size: 14px;
+    }
+
+    html.fs-md {
+        font-size: 16px;
+    }
+
+    /* 預設 */
+    html.fs-lg {
+        font-size: 18px;
+    }
+
+    /* === 縮小「書寫範例教學」整區字級 === */
+    html.fs-sm #書寫範例教學-container {
+        font-size: 0.95rem;
+    }
+
+    /* 約 15px */
+    html.fs-md #書寫範例教學-container {
+        font-size: 1rem;
+    }
+
+    /* 16px (預設) */
+    html.fs-lg #書寫範例教學-container {
+        font-size: 1.0625rem;
+    }
+
+    /* 約 17px */
+
+    /* === 縮小卡片標題（覆蓋內文原本的 px）=== */
+    html.fs-sm #書寫範例教學-container .card h4 {
+        font-size: 0.8rem !important;
+    }
+
+    /* 16px */
+    html.fs-md #書寫範例教學-container .card h4 {
+        font-size: 1rem !important;
+    }
+
+    /* 18px */
+    html.fs-lg #書寫範例教學-container .card h4 {
+        font-size: 1.25rem !important;
+    }
+
+    /* 20px */
+
+    /* === 全站改成白色底 === */
+    body {
+        background-color: #fff !important;
+    }
+
+    /* 幻燈片區底色變白 */
+    .slideshow-container {
+        background-color: #fff !important;
+    }
+
+    /* 連結卡片：取消灰底、統一白色 */
+    :root {
+        --paper: #fff !important;
+        /* 原本 #f3f3f3 */
+        --paper-alt: #fff !important;
+        /* 原本 #e9e9e9（偶數列灰） */
+    }
+
+    .card {
+        background: #fff !important;
+    }
+
+    .card:nth-child(even) {
+        background: #fff !important;
+    }
+
+    /* 若想完全「扁平化」沒有陰影，順便關掉陰影 */
+    .card,
+    .main-content {
+        box-shadow: none !important;
+    }
+
+    /*（可選）主要內容容器也保持白色 */
+    .main-content {
+        background-color: #fff !important;
+    }
+
+
+    /* 下拉選單按鈕樣式 */
+    .dropbtn {
+        background-color: #2b6777;
+        color: white;
+        padding: 10px 16px;
+        font-size: 14px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    /* 下拉容器 */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* 下拉內容 */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 240px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+        border-radius: 4px;
+        z-index: 1;
+    }
+
+    /* 下拉內容內的連結 */
+    .dropdown-content a {
+        color: black;
+        padding: 10px 14px;
+        text-decoration: none;
+        display: block;
+        font-size: 14px;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+
+    /* 滑鼠移上按鈕或下拉內容時顯示 */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    /* 按鈕 hover 效果 */
+    .dropdown:hover .dropbtn {
+        background-color: #1f4d5c;
+    }
+
+    /* 容器：跟下面卡片同一個寬度父層即可（會自動撐滿） */
+    .menu-wrap {
+        position: relative;
+        width: 100%;
+    }
+
+    /* 觸發按鈕：外觀可依你站上的主色調調整 */
+    .menu-btn {
+        background: #2b6777;
+        color: #fff;
+        border: 0;
+        border-radius: 8px;
+        padding: 10px 16px;
+        font-size: 14px;
+        cursor: pointer;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .08);
+    }
+
+    .menu-btn:focus-visible {
+        outline: 2px solid #1f4d5c;
+        outline-offset: 2px;
+    }
+
+    /* 彈出面板（寬度與容器等寬） */
+    .menu-popover {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: calc(100% + 8px);
+        display: none;
+        /* 卡片式外觀，和你下面那塊一致風格 */
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+        padding: 12px;
+        z-index: 50;
+
+        /* 動畫 */
+        transform-origin: top;
+        animation: popIn .14s ease-out;
+    }
+
+    @keyframes popIn {
+        from {
+            opacity: .0;
+            transform: scale(.98)
+        }
+
+        to {
+            opacity: 1;
+            transform: none
+        }
+    }
+
+    /* 單一連結項目：做成大卡片樣式 */
+    .menu-item {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        text-decoration: none;
+        color: #111827;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 16px;
+        margin: 8px 0;
+        transition: background .15s, transform .05s, border-color .15s;
+        min-height: 96px;
+        /* 視覺高度接近你圖中的卡片 */
+    }
+
+    .menu-item:hover {
+        background: #f9fafb;
+        border-color: #d1d5db;
+    }
+
+    .menu-item:active {
+        transform: scale(.997);
+    }
+
+    .item-title {
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 1.3;
+    }
+
+    .item-sub {
+        color: #6b7280;
+        font-size: 14px;
+        overflow-wrap: anywhere;
+    }
+
+    /* 手機：面板不浮動，改成推開式（比較好操作、避免超出視窗） */
+    @media (max-width:768px) {
+        .menu-popover {
+            position: static;
+            display: none;
+            margin-top: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .06);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .mid-title {
+            font-size: 24px;
+            text-align: center;
+            /* 讓它置中 */
+        }
+    }
+
+    @media (max-width: 768px) {
+        .search-inner {
+            width: 95%;
+            /* 預留一點空間避免超過 */
+        }
+    }
+
+    /* 讓右欄列也能吃到跳轉閃爍 */
+    .link-row.jumpFlash {
+        animation: jumpFlash .8s ease-out;
+    }
