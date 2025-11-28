@@ -13,6 +13,7 @@
 
   <!-- 標題區 -->
   <div id="header-container"></div>
+  <div id="xiang_header-container"></div>
 
   <!-- 幻燈片區 -->
   <div id="slideshow-container"></div>
@@ -225,6 +226,28 @@
         });
     });
 
+        // 這兩段保留原本載入 header / 教學，只是最後改呼叫 trySetupSearch()
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("xiang_header.html")
+        .then(r => r.text())
+        .then(html => {
+          document.getElementById("xiang_header-container").innerHTML = html;
+          state.headerLoaded = true;
+          trySetupSearch();
+        });
+    });
+
+        // 這兩段保留原本載入 header / 教學，只是最後改呼叫 trySetupSearch()
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("xiang_footer.html")
+        .then(r => r.text())
+        .then(html => {
+          document.getElementById("xiang_footer-container").innerHTML = html;
+          state.headerLoaded = true;
+          trySetupSearch();
+        });
+    });
+
     document.addEventListener("DOMContentLoaded", () => {
       fetch("書寫範例教學.html")
         .then(r => r.text())
@@ -350,8 +373,8 @@
         if (e.key === 'Escape') closeMenu();
       });
     })();
-
   </script>
+    <div id="xiang_footer-container"></div>
 
 
 </body>

@@ -575,3 +575,15 @@
     .link-row.jumpFlash {
         animation: jumpFlash .8s ease-out;
     }
+
+#header-container {
+    margin-bottom: 0;
+}
+#xiang_header-container {
+    margin-top: 0;
+}
+#header-container,
+#xiang_header-container {
+    display: block;
+    line-height: 0;
+}
