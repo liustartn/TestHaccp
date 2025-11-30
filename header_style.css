@@ -1,29 +1,109 @@
-/* ① 全站字級：改 html 的 font-size，讓 rem 自動跟著放大縮小 */
-html {
-    font-size: 25px;
+/* 全站字體 */
+html, body, * {
+    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif !important;
+}
+.mid-title {
+    font-family: "Noto Serif TC", serif !important;
+    font-weight: 600;
+    letter-spacing: 2px;
 }
 
-html.fs-sm {
-    font-size: 20px;
+
+/* 字級切換機制 */
+html { font-size: 25px; }
+html.fs-sm { font-size: 20px; }
+html.fs-md { font-size: 25px; }
+html.fs-lg { font-size: 30px; }
+
+/* 重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* 小 */
-html.fs-md {
-    font-size: 25px;
+body {
+    background-color: #f5f5f5;
+    color: #333;
 }
 
-/* 中（預設） */
-html.fs-lg {
-    font-size: 30px;
+/*───────────────
+   第一行 Header（白底）
+────────────────*/
+.logo-bar {
+    width: 100%;
+    background: white;
+    border-bottom: 1px solid #ccc;
+    padding: 15px 0;
 }
 
-/* 大 */
+/* 內容限制在 85% 寬度 */
+.logo-inner {
+    width: 75%;
+    margin: 0 auto;
 
-/* ② Header 裡的控制鈕造型（可依你的 header 改顏色） */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* 左：Logo + 標題 */
+.left-group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.left-group img {
+    height: 85px;   /* Logo 大小 */
+    width: auto;
+}
+
+.mid-title {
+    font-size: 40px;
+    font-weight: 700;
+    color: rgb(77, 87, 146);
+    white-space: nowrap;
+}
+
+/* 右：搜尋 + 字級 */
+.right-group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* 搜尋列（保持原樣） */
+.searchbar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0;
+}
+
+.search-inner {
+    position: relative;
+    width: min(100%, 500px);
+}
+
+.search-inner input {
+    width: 100%;
+    height: 48px;
+    font-size: 16px;
+    padding: 12px 14px 12px 42px;
+    border-radius: 12px;
+}
+
+.search-inner svg {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: .6;
+}
+
+/* 字級切換按鈕 */
 .font-switch {
     display: flex;
-    margin-left: auto;
-    /* 把按鈕推到最右邊 */
     gap: 6px;
     padding: 4px 6px;
     border-radius: 999px;
@@ -52,118 +132,48 @@ html.fs-lg {
     color: #fff;
 }
 
-/* 小提醒：盡量用 rem/em 定義文字，像 14px 改 0.875rem，才會跟著全站放大。 */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: "Microsoft JhengHei", sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
-}
-
-/* ⬆️ Logo + Title 區 */
-.logo-bar {
-    display: flex;
-    align-items: center;
-    padding: 16px 32px;
-    background-color: #ffffff;
-    border-bottom: 1px solid #ccc;
+/*───────────────
+   第二行 Menu（藍底）
+────────────────*/
+.menu {
     width: 100%;
+    background-color: #2a78c4 !important;  /* HACCP 藍 */
+    border-top: 1px solid #e5e5e5;
 }
 
-.logo-bar img {
-    height: 6vw;
-    max-height: 80px;
-    width: auto;
-    margin-right: 2vw;
-}
-
-.logo-text h1 {
-    font-size: 2vw;
-    color: #4b2c0d;
-    margin-bottom: 4px;
-    white-space: nowrap;
-}
-
-.logo-text p {
-    font-size: 1vw;
-    color: #666;
-    white-space: nowrap;
-}
-
-/* ⬆️ 導覽列 */
-.custom-header-menu {
-    width: 100%;
-    background-color: #ffcc66;
-    border-bottom: 1px solid #d2a743;
-    width: 100%;
-}
-
-.custom-header-menu ul {
+.menu ul {
+    list-style: none;
     display: flex;
     justify-content: center;
-    align-items: center;
-    list-style: none;
-    padding: 12px 0;
+    padding: 10px 0;
     margin: 0;
-    flex-wrap: wrap;
 }
 
-.custom-header-menu ul li {
-    margin: 0 24px;
+.menu ul li {
+    margin: 0 15px;
 }
 
-.custom-header-menu ul li a {
+/* 導覽列按鈕 */
+.menu ul li a {
+    display: block;
+    padding: 18px 30px;
+    background-color: transparent !important; /* 透明，背景顯示藍色 */
+    color: white !important;
+    border-radius: 4px;
+    font-size: 22px;
     text-decoration: none;
-    color: #333;
-    font-size: 23px;
-    font-weight: bold;
-    background-color: #ffcc66;
-    padding: 8px 16px;
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color .25s, color .25s;
 }
 
-.custom-header-menu ul li a:hover {
-    background-color: #884400;
-    color: #fff;
-
+/* hover 深藍 */
+.menu ul li a:hover {
+    background-color: #1f5ea0 !important;
+    color: #ffffff !important;
 }
 
-@media (max-width: 768px) {
-    .logo-bar {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .logo-bar img {
-        height: 60px;
-        margin: 0 0 8px 0;
-    }
-
-    .logo-text h1 {
-        font-size: 20px;
-    }
-
-    .logo-text p {
-        font-size: 12px;
-    }
-
-    .custom-header-menu ul {
-        flex-direction: column;
-    }
-
-    .custom-header-menu ul li {
-        margin: 6px 0;
-    }
-}
-
-/* ⬇️ 主內容 */
+/*───────────────
+      主內容區
+────────────────*/
 .main-content {
     max-width: 800px;
     margin: 40px auto;
@@ -184,50 +194,10 @@ p {
     line-height: 1.6;
 }
 
+/* footer */
 .footer {
     text-align: center;
     padding: 16px;
     font-size: 14px;
     color: #888;
-}
-
-:root {
-    --search-width: 500px;
-}
-
-.searchbar {
-    display: flex;
-    justify-content: flex-end;
-    padding: 8px 0 16px;
-}
-
-.search-inner {
-    position: relative;
-    width: min(100%, var(--search-width));
-}
-
-.search-inner input {
-    width: 100%;
-    height: 48px;
-    margin-top: 20px;
-    font-size: 16px;
-    padding: 12px 14px 12px 42px;
-    border-radius: 12px;
-}
-
-.search-inner svg {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    opacity: .6;
-}
-
-.mid-title {
-    margin: 0;
-    margin-top: 6px;
-    font-size: 40px;
-    font-weight: 700;
-    color: rgb(77, 87, 146);
-    white-space: nowrap;
 }
