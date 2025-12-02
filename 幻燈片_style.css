@@ -43,7 +43,8 @@
 @media (min-width: 769px) {
     .slideshow-wrapper {
         position: relative;
-        left: -100px; /* 左移 20px，自行調整 */
+        left: 0px; 
+        margin: 0 auto; /* 保證置中 */
     }
 }
 
@@ -286,6 +287,7 @@
     flex: 1;
     overflow: hidden;
     display: -webkit-box;
+    line-clamp: 1;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     background-image: linear-gradient(currentColor, currentColor);

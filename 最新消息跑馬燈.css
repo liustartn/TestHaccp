@@ -1,0 +1,22 @@
+/* --- 最新消息跑馬燈 --- */
+.marquee-box {
+    width: 100%;
+    background: #ffecc7;
+    color: #7a3e00;
+    padding: 6px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 16px;
+    border-bottom: 1px solid #e0b873;
+}
+
+.marquee-content {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marqueeScroll 15s linear infinite;
+}
+
+@keyframes marqueeScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-100%); }
+}

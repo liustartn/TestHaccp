@@ -3,381 +3,273 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" type="image/x-icon" href="haccp.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="index_style.css">
+  <link rel="icon" href="haccp.ico">
   <title>HACCP</title>
+
+  <!-- 全站樣式 -->
+  <link rel="stylesheet" href="index_style.css">
+  <link rel="stylesheet" href="最新消息跑馬燈.css">
+  <link rel="stylesheet" href="幻燈片_style.css">
+
+  <!-- 全頁淡入 & Loading -->
+  <style>
+    body {
+      opacity: 0;
+      transition: opacity .8s ease;
+    }
+
+    body.show {
+      opacity: 1;
+    }
+
+    /* Loading 動畫 */
+    #loading-screen {
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 255, 255, .9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      z-index: 9999;
+    }
+
+    .spinner {
+      width: 35px;
+      height: 35px;
+      border: 4px solid #ccc;
+      border-top-color: #2b6777;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- 標題區 -->
+  <!-- Loading 畫面 -->
+  <div id="loading-screen">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- header -->
   <div id="header-container"></div>
 
+  <!-- 最新消息跑馬燈 -->
+  <div id="最新消息跑馬燈區"></div>
 
-  <!-- 幻燈片區 -->
+  <!-- 幻燈片 -->
   <div id="slideshow-container"></div>
 
+  <!-- 書寫範例教學（不載內容，可保留） -->
   <div id="書寫範例教學-container"></div>
 
-  <section class="link-cards" aria-label="社群與常用連結">
+  <!-- 主要連結 -->
+  <section class="link-cards">
 
-    <!-- 下拉（點擊展開） -->
     <div class="menu-wrap">
-      <button class="menu-btn" id="govToggle" aria-expanded="false" aria-controls="govMenu">
-        地政專區
-      </button>
+      <button class="menu-btn" id="govToggle">相關網站</button>
 
-      <!-- 彈出面板：寬度與下面卡片一樣（佔滿容器寬） -->
-      <div class="menu-popover" id="govMenu" role="menu">
-        <a class="menu-item" href="https://lvr.land.moi.gov.tw/" target="_blank">
-          <div class="item-title">內政部不動產交易實價查詢服務網</div>
-          <div class="item-sub">https://lvr.land.moi.gov.tw/</div>
+      <div class="menu-popover" id="govMenu">
+        <a class="menu-item" href="https://www.fda.gov.tw/TC/index.aspx" target="_blank">
+          <div class="item-title">衛生福利部食品藥物管理署</div>
+          <div class="item-sub">https://www.fda.gov.tw/TC/index.aspx</div>
         </a>
-        <a class="menu-item" href="https://www.land.tycg.gov.tw/chaspx/DefaultS.aspx" target="_blank">
-          <div class="item-title">桃園地政資訊服務網</div>
-          <div class="item-sub">https://www.land.tycg.gov.tw/chaspx/DefaultS.aspx</div>
+
+        <a class="menu-item" href="https://foodedu.fda.gov.tw/tblu/main/ap/index.jsp" target="_blank">
+          <div class="item-title">食品衛生安全課程資訊管理系統</div>
+          <div class="item-sub">https://foodedu.fda.gov.tw/tblu/main/ap/index.jsp</div>
         </a>
-        <a class="menu-item" href="https://e-services.tycg.gov.tw/TycgOnline/tycgOnline.action" target="_blank">
-          <div class="item-title">桃園網路e指通</div>
-          <div class="item-sub">https://e-services.tycg.gov.tw/TycgOnline/tycgOnline.action</div>
+
+        <a class="menu-item" href="https://www.cas.org.tw/" target="_blank">
+          <div class="item-title">台灣優良農產品發展協會</div>
+          <div class="item-sub">https://www.cas.org.tw/</div>
         </a>
-        <a class="menu-item" href="https://www.tycg.gov.tw/" target="_blank">
-          <div class="item-title">桃園市政府</div>
-          <div class="item-sub">https://www.tycg.gov.tw/</div>
+
+        <a class="menu-item" href="https://www.moa.gov.tw/" target="_blank">
+          <div class="item-title">行政院農業部</div>
+          <div class="item-sub">https://www.moa.gov.tw/</div>
         </a>
-        <a class="menu-item" href="https://taobao.tycg.gov.tw/Home" target="_blank">
-          <div class="item-title">桃園住宅及不動產資訊桃寶網</div>
-          <div class="item-sub">https://taobao.tycg.gov.tw/Home</div>
-        </a>
+
+      
       </div>
     </div>
 
-
-
-    <a class="card" href="https://www.facebook.com/daxiland.tycg.gov.tw/" target="_blank" rel="noopener">
+    <a class="card" href="https://docs.google.com/forms/d/e/1FAIpQLSdqkEUZeXdLS93NGsO_EeJAccC1SkvjrUIKkrJ7LYG94bG0WA/viewform?pli=1" target="_blank">
       <img class="card-icon"
-        src="https://static.newmobilelife.com/wp-content/uploads/2016/04/facebook-logo-png-transparent-background.png"
-        alt="Facebook 粉絲團">
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Google_Forms_2020_Logo.svg/330px-Google_Forms_2020_Logo.svg.png">
       <div>
-        <h3 class="card-title">大溪地所粉絲團 </h3>
-        <div class="card-url">https://www.facebook.com/daxiland.tycg.gov.tw/</div>
+        <h3 class="card-title">114年度食品安全管制系統訓練班(60A及60B)*報名表</h3>
+        <div class="card-url">https://docs.google.com/forms/d/e/1FAIpQLSdqkEUZeXdLS93NGsO_EeJAccC1SkvjrUIKkrJ7LYG94bG0WA/viewform?pli=1</div>
       </div>
     </a>
 
-
-
-    <a class="card" href="https://line.me/R/ti/p/@taoyuancgo?from=page&openQrModal=true&searchId=taoyuancgo"
-      target="_blank" rel="noopener">
+    <a class="card" href="https://docs.google.com/forms/d/e/1FAIpQLSfaLwVxreosJ62xDCCAWRCFpsuaxmJO0PK4MLewo3cs6AvOUQ/viewform" target="_blank">
       <img class="card-icon"
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/LINE_logo.svg/1200px-LINE_logo.svg.png"
-        alt="市府 LINE">
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Google_Forms_2020_Logo.svg/330px-Google_Forms_2020_Logo.svg.png">
       <div>
-        <h3 class="card-title">桃園市政府官方line </h3>
-        <div class="card-url">https://line.me/R/ti/p/@taoyuancgo?from=page&openQrModal=true&searchId=taoyuancgo</div>
+        <h3 class="card-title">114年度食品安全管制系統訓練班(60A及60B)-屏科大</h3>
+        <div class="card-url">https://docs.google.com/forms/d/e/1FAIpQLSfaLwVxreosJ62xDCCAWRCFpsuaxmJO0PK4MLewo3cs6AvOUQ/viewform</div>
       </div>
     </a>
+
   </section>
 
+  <div id="xiang_footer-container"></div>
 
+
+  <!-- ************ 模組化 JS 區 ************ -->
   <script>
+    /* -------- 模組 1：載入外部 HTML ---------- */
+    async function includeHTML(id, url) {
+      try {
+        const res = await fetch(url);
+        const html = await res.text();
+        document.getElementById(id).innerHTML = html;
+      } catch (e) {
+        console.error(`載入 ${url} 失敗：`, e);
+      }
+    }
 
+    /* -------- 模組 2：地政專區下拉 ---------- */
+    function setupGovMenu() {
+      const btn = document.getElementById("govToggle");
+      const menu = document.getElementById("govMenu");
+      if (!btn || !menu) return;
 
-    document.addEventListener("DOMContentLoaded", function () {
-      fetch("header.html")
-        .then(response => response.text())
-        .then(data => document.getElementById("header-container").innerHTML = data)
-        .catch(error => console.error("載入 header 失敗:", error));
-    });
+      btn.onclick = (e) => {
+        const open = menu.style.display === "block";
+        menu.style.display = open ? "none" : "block";
+        e.stopPropagation();
+      };
 
-    document.addEventListener("DOMContentLoaded", function () {
-      fetch("書寫範例教學.html")
-        .then(response => response.text())
-        .then(data => document.getElementById("書寫範例教學-container").innerHTML = data)
-        .catch(error => console.error("載入 header 失敗:", error));
-    });
+      document.addEventListener("click", (e) => {
+        if (!menu.contains(e.target) && e.target !== btn)
+          menu.style.display = "none";
+      });
 
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") menu.style.display = "none";
+      });
+    }
 
-    document.addEventListener("DOMContentLoaded", function () {
-      fetch("幻燈片和右方文字區塊.html")
-        .then(res => res.text())
-        .then(html => {
-          document.getElementById("slideshow-container").innerHTML = html;
-          state.slideLoaded = true;
-          trySetupSearch();
+    /* -------- 模組 3：幻燈片初始化 ---------- */
+    function setupSlideshow() {
+      const slides = document.querySelectorAll(".slide");
+      const dots = document.querySelectorAll(".dot");
+      const prev = document.querySelector(".prev");
+      const next = document.querySelector(".next");
+      const slider = document.getElementById("slider");
 
-          // 啟用幻燈片輪播
-          let slideIndex = 0;
-          let slides = document.querySelectorAll(".slide");
-          let dots = document.querySelectorAll(".dot");
-          let slideInterval;
+      if (!slides.length) return; // 沒有載入成功就直接跳過
 
-          function showSlides() {
-            slides.forEach(s => s.style.display = "none");
-            dots.forEach(d => d.classList.remove("active"));
-            if (slideIndex >= slides.length) slideIndex = 0;
-            if (slideIndex < 0) slideIndex = slides.length - 1;
-            slides[slideIndex].style.display = "block";
-            dots[slideIndex].classList.add("active");
-          }
+      let index = 0;
+      let timer;
 
-          function plusSlides(n) {
-            clearInterval(slideInterval);
-            slideIndex += n;
-            showSlides();
-            startSlideShow();
-          }
+      function show() {
+        slides.forEach(s => s.style.display = "none");
+        dots.forEach(d => d.classList.remove("active"));
 
-          function currentSlide(n) {
-            clearInterval(slideInterval);
-            slideIndex = n;
-            showSlides();
-            startSlideShow();
-          }
+        if (index >= slides.length) index = 0;
+        if (index < 0) index = slides.length - 1;
 
-          function startSlideShow() {
-            slideInterval = setInterval(() => {
-              slideIndex++;
-              showSlides();
-            }, 5000);
-          }
+        slides[index].style.display = "block";
+        if (dots[index]) dots[index].classList.add("active");
+      }
 
-          // 初始化幻燈片
-          showSlides();
-          startSlideShow();
+      function start() {
+        stop();
+        timer = setInterval(() => {
+          index++;
+          show();
+        }, 5000);
+      }
 
-          // 綁定按鈕事件
-          document.querySelector(".prev").onclick = () => plusSlides(-1);
-          document.querySelector(".next").onclick = () => plusSlides(1);
-          dots.forEach((dot, i) => {
-            dot.onclick = () => currentSlide(i);
-          });
+      function stop() {
+        if (timer) clearInterval(timer);
+      }
 
-          // Tab 切換事件委派
-          const tabButtons = document.querySelectorAll(".tab-button");
-          const tabContents = document.querySelectorAll(".tab-content");
+      prev && prev.addEventListener("click", () => { index--; show(); start(); });
+      next && next.addEventListener("click", () => { index++; show(); start(); });
+      dots.forEach((dot, i) => {
+        dot.addEventListener("click", () => { index = i; show(); start(); });
+      });
 
-          tabButtons.forEach((btn, i) => {
-            btn.addEventListener("click", () => {
-              tabButtons.forEach(b => b.classList.remove("active"));
-              tabContents.forEach(c => c.classList.remove("active"));
-              btn.classList.add("active");
-              tabContents[i].classList.add("active");
-            });
-          });
-        })
-        .catch(err => {
-          console.error("載入幻燈片失敗：", err);
-        });
-    });
-  </script>
+      if (slider) {
+        slider.addEventListener("mouseenter", stop);
+        slider.addEventListener("mouseleave", start);
+      }
 
-  <script>
-    (function () {
-      const KEY = 'siteFontSize';
+      show();
+      start();
+    }
+
+    /* -------- ⭐ 模組 4：header 字體大小切換 ---------- */
+    function setupFontSizeSwitcher() {
+      const KEY = "siteFontSize";
       const html = document.documentElement;
 
-      // 1) 套用 & 記住
       function apply(size) {
-        html.classList.remove('fs-sm', 'fs-md', 'fs-lg');
-        html.classList.add('fs-' + size);
+        html.classList.remove("fs-sm", "fs-md", "fs-lg");
+        html.classList.add("fs-" + size);
         localStorage.setItem(KEY, size);
         syncActive();
       }
 
-      // 2) 同步 header 按鈕的 active 狀態（header 可能晚一點才載入）
       function syncActive() {
-        const switcher = document.getElementById('fontSwitch');
+        const switcher = document.getElementById("fontSwitch");
         if (!switcher) return;
-        const current = localStorage.getItem(KEY) || 'md';
-        switcher.querySelectorAll('button').forEach(b => {
-          b.classList.toggle('active', b.dataset.size === current);
+        const current = localStorage.getItem(KEY) || "md";
+        switcher.querySelectorAll("button").forEach(b => {
+          b.classList.toggle("active", b.dataset.size === current);
         });
       }
 
-      // 3) 事件委派：不管 header 何時插入，點擊都會被接住
-      document.addEventListener('click', (e) => {
-        const btn = e.target.closest('#fontSwitch button[data-size]');
+      // 事件委派：點 header 裡的 大/中/小 按鈕
+      document.addEventListener("click", (e) => {
+        const btn = e.target.closest("#fontSwitch button[data-size]");
         if (!btn) return;
         apply(btn.dataset.size);
       });
 
-      // 4) 初始化：一載入就套上上次選擇
-      apply(localStorage.getItem(KEY) || 'md');
-
-      // 5) 監聽 DOM 變化，等 fetch 把 header 插入後同步 active 狀態
-      const mo = new MutationObserver(syncActive);
-      mo.observe(document.body, { childList: true, subtree: true });
-    })();
-  </script>
-
-  <script>
-    // ✅ 等 header、教學、幻燈片都載好，才綁「像 Ctrl+F」的找字＋跳轉
-    const state = { headerLoaded: false, teachLoaded: false, slideLoaded: false };
-
-    // 這兩段保留原本載入 header / 教學，只是最後改呼叫 trySetupSearch()
-    document.addEventListener("DOMContentLoaded", () => {
-      fetch("header.html")
-        .then(r => r.text())
-        .then(html => {
-          document.getElementById("header-container").innerHTML = html;
-          state.headerLoaded = true;
-          trySetupSearch();
-        });
-    });
-
-        // 這兩段保留原本載入 header / 教學，只是最後改呼叫 trySetupSearch()
-    document.addEventListener("DOMContentLoaded", () => {
-      fetch("xiang_header.html")
-        .then(r => r.text())
-        .then(html => {
-          document.getElementById("xiang_header-container").innerHTML = html;
-          state.headerLoaded = true;
-          trySetupSearch();
-        });
-    });
-
-        // 這兩段保留原本載入 header / 教學，只是最後改呼叫 trySetupSearch()
-    document.addEventListener("DOMContentLoaded", () => {
-      fetch("xiang_footer.html")
-        .then(r => r.text())
-        .then(html => {
-          document.getElementById("xiang_footer-container").innerHTML = html;
-          state.headerLoaded = true;
-          trySetupSearch();
-        });
-    });
-
-    document.addEventListener("DOMContentLoaded", () => {
-      fetch("書寫範例教學.html")
-        .then(r => r.text())
-        .then(html => {
-          document.getElementById("書寫範例教學-container").innerHTML = html;
-          state.teachLoaded = true;
-          trySetupSearch();
-        });
-    });
-
-    // ⚠️ 第 1 步已在載入「幻燈片」那段 fetch 塞了：
-    // state.slideLoaded = true; trySetupSearch();
-
-    function trySetupSearch() {
-      // 等三塊都到位
-      if (!state.headerLoaded || !state.teachLoaded || !state.slideLoaded) return;
-
-      const input = document.getElementById('q'); // header.html 裡的搜尋框
-      const scopeTeach = document.getElementById('書寫範例教學-container');
-      const scopeSlide = document.getElementById('slideshow-container');
-      if (!input) return;
-
-      // ① 教學卡片標題 h4（外層 .card）
-      const nodesTeach = scopeTeach ? Array.from(scopeTeach.querySelectorAll('.card h4')) : [];
-      // ② 幻燈片右欄清單項目文字（.slideshow-right 裡的 .title；外層 .link-row，捲動容器 .right-scroll）
-      const nodesSlide = scopeSlide ? Array.from(scopeSlide.querySelectorAll('.slideshow-right .title')) : [];
-
-      const nodes = [...nodesTeach, ...nodesSlide];
-
-      let matches = [];
-      let idx = -1;
-
-      const escapeRegExp = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-
-      function clearHighlights() {
-        // 清掉所有 <mark class="hl">
-        document.querySelectorAll('mark.hl').forEach(m => {
-          const text = document.createTextNode(m.textContent);
-          const parent = m.parentNode;
-          parent.replaceChild(text, m);
-          parent.normalize();
-        });
-        // 移除跳轉閃爍
-        document.querySelectorAll('.card.jumpFlash, .link-row.jumpFlash')
-          .forEach(el => el.classList.remove('jumpFlash'));
-      }
-
-      function highlightAndCollect(keyword) {
-        matches = [];
-        if (!keyword) return;
-        const re = new RegExp(`(${escapeRegExp(keyword)})`, 'ig');
-
-        nodes.forEach(node => {
-          const raw = node.textContent;
-          if (!raw.toLowerCase().includes(keyword.toLowerCase())) return;
-          node.innerHTML = raw.replace(re, '<mark class="hl">$1</mark>');
-          // 依容器不同抓外層，用來跳轉
-          const carrier = node.closest('.card, .link-row') || node;
-          matches.push(carrier);
-        });
-      }
-
-      function jump(to) {
-        if (!matches.length) return;
-        idx = (to + matches.length) % matches.length;
-        const target = matches[idx];
-        target.classList.add('jumpFlash');
-
-        // 若在右欄，改用右欄自己的捲動容器
-        const scroller = target.closest('.right-scroll');
-        if (scroller) {
-          const top = target.offsetTop - 16; // 稍微往上留點空間
-          scroller.scrollTo({ top, behavior: 'smooth' });
-        } else {
-          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-        setTimeout(() => target.classList.remove('jumpFlash'), 900);
-      }
-
-      // 輸入即時標亮＋自動跳第一個
-      input.addEventListener('input', () => {
-        const kw = input.value.trim();
-        clearHighlights();
-        if (!kw) { matches = []; idx = -1; return; }
-        highlightAndCollect(kw);
-        if (matches.length) jump(0);
-      });
-
-      // Enter 下一個；Shift+Enter 上一個（焦點在輸入框時）
-      document.addEventListener('keydown', (e) => {
-        if (document.activeElement !== input || !matches.length) return;
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          e.shiftKey ? jump(idx - 1) : jump(idx + 1);
-        }
-      });
+      // 初始化：套用上次選擇的字級
+      apply(localStorage.getItem(KEY) || "md");
+      // header 已經載入好了，再同步一次 active 樣式
+      syncActive();
     }
+
+    /* -------- 模組 5：全頁 Loading ---------- */
+    function hideLoading() {
+      const l = document.getElementById("loading-screen");
+      if (l) l.style.display = "none";
+      document.body.classList.add("show");
+    }
+
+    /* -------- 模組 6：初始化 ---------- */
+    async function init() {
+      await Promise.all([
+        includeHTML("header-container", "header.html"),
+        includeHTML("最新消息跑馬燈區", "最新消息跑馬燈.html"),
+        includeHTML("slideshow-container", "幻燈片和右方文字區塊.html"),
+        includeHTML("xiang_footer-container", "xiang_footer.html")
+      ]);
+
+      setupGovMenu();
+      setupSlideshow();
+      setupFontSizeSwitcher();  // ⭐ 把字級切換功能接回來
+      hideLoading();
+    }
+
+    document.addEventListener("DOMContentLoaded", init);
   </script>
-
-
-  <script>
-    // 點擊展開 / 點外面關閉 / ESC 關閉（含無障礙 aria）
-    (function () {
-      const btn = document.getElementById('govToggle');
-      const menu = document.getElementById('govMenu');
-
-      function openMenu() { menu.style.display = 'block'; btn.setAttribute('aria-expanded', 'true'); }
-      function closeMenu() { menu.style.display = 'none'; btn.setAttribute('aria-expanded', 'false'); }
-
-      btn.addEventListener('click', (e) => {
-        const open = btn.getAttribute('aria-expanded') === 'true';
-        open ? closeMenu() : openMenu();
-        e.stopPropagation();
-      });
-
-      // 點外面關閉
-      document.addEventListener('click', (e) => {
-        if (!menu.contains(e.target) && e.target !== btn) closeMenu();
-      });
-
-      // ESC 關閉
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeMenu();
-      });
-    })();
-  </script>
-    <div id="xiang_footer-container"></div>
-
 
 </body>
-
 
 </html>
