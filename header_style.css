@@ -201,3 +201,26 @@ p {
     font-size: 14px;
     color: #888;
 }
+
+.logo-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+}
+
+.menu {
+    position: fixed;
+    top: 115px; /* 完全貼齊，縫就不見 */
+    width: 100%;
+    z-index: 9998;
+}
+
+
+.main-content {
+    margin-top: 220px; /* 白色 + 藍色 Header 的總高度 */
+}
+body {
+    padding-top: 170px; /* 讓內容往下推，不被 header 擋住 */
+}
+

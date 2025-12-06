@@ -87,23 +87,39 @@
 
 .prev,
 .next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #888;
-    color: #fff;
-    padding: 10px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    z-index: 10;
-    user-select: none;
-    border: 0;
+    background: transparent;
 }
 
-.prev:hover,
-.next:hover {
-    background: #444;
+
+
+.slide-hover-left,
+.slide-hover-right {
+    position: absolute;
+    top: 0;
+    width: 20%; /* 1/5 區域 */
+    height: 100%;
+    z-index: 5;   /* 要在圖片上方才能偵測 hover */
 }
+
+/* 左邊感應區塊 */
+.slide-hover-left {
+    left: 0;
+}
+
+/* 右邊感應區塊 */
+.slide-hover-right {
+    right: 0;
+}
+
+.slide-hover-left:hover ~ .prev {
+    background: rgba(0,0,0,0.3);
+}
+
+.slide-hover-right:hover ~ .next {
+    background: rgba(0,0,0,0.3);
+}
+
+
 
 .prev {
     left: 10px;
